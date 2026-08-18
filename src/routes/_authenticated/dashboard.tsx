@@ -90,7 +90,13 @@ function Dashboard() {
       const { data: userData } = await supabase.auth.getUser();
       const { data, error } = await supabase
         .from("cases")
-        .insert({ ...parsed, created_by: userData.user?.id ?? null })
+        .insert({
+          case_number: parsed.case_number,
+          title: parsed.title,
+          status: parsed.status,
+          description: parsed.description ?? null,
+          created_by: userData.user?.id ?? null,
+        })
         .select()
         .single();
       if (error) throw error;
