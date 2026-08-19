@@ -143,6 +143,7 @@ function CaseWorkspace() {
         <Tabs defaultValue="evidence" className="mt-6">
           <TabsList className="flex flex-wrap">
             <TabsTrigger value="evidence">Evidence</TabsTrigger>
+            <TabsTrigger value="relations">Relations</TabsTrigger>
             <TabsTrigger value="timeline">Timeline</TabsTrigger>
             <TabsTrigger value="people">People</TabsTrigger>
             <TabsTrigger value="vehicles">Vehicles</TabsTrigger>
