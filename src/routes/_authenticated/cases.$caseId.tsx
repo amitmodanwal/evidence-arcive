@@ -7,6 +7,7 @@ import { CaseTimeline } from "@/components/case/CaseTimeline";
 import { EvidenceList } from "@/components/case/EvidenceList";
 import { EvidenceUploadDialog } from "@/components/case/EvidenceUploadDialog";
 import { RecordManager, useCaseRecords } from "@/components/case/RecordManager";
+import { WitnessStatements } from "@/components/case/WitnessStatements";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
