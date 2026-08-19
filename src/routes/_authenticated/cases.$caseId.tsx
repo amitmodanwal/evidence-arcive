@@ -95,11 +95,11 @@ function CaseWorkspace() {
   ) => {
     if (!id) return "—";
     const source = {
-      location: { rows: locations.data, keys: ["label", "address"] },
-      suspect: { rows: suspects.data, keys: ["full_name"] },
-      victim: { rows: victims.data, keys: ["full_name"] },
-      witness: { rows: witnesses.data, keys: ["full_name"] },
-      vehicle: { rows: vehicles.data, keys: ["registration_number", "model"] },
+      location: { rows: locations.data, keys: ["name", "address"] },
+      suspect: { rows: suspects.data, keys: ["name"] },
+      victim: { rows: victims.data, keys: ["name"] },
+      witness: { rows: witnesses.data, keys: ["name"] },
+      vehicle: { rows: vehicles.data, keys: ["registration_number", "make_model"] },
     }[kind];
     const row = (source.rows ?? []).find((r) => r.id === id);
     return row ? nameField(row as PersonRow, source.keys) : "—";
