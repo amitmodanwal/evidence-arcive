@@ -172,6 +172,10 @@ function CaseWorkspace() {
             />
           </TabsContent>
 
+          <TabsContent value="relations" className="mt-5">
+            <EvidenceRelations caseId={caseId} />
+          </TabsContent>
+
           <TabsContent value="timeline" className="mt-5">
             <CaseTimeline caseId={caseId} canEdit={canEdit} />
           </TabsContent>
