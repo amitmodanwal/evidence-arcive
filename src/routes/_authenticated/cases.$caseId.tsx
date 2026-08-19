@@ -302,7 +302,7 @@ function CaseWorkspace() {
                   <>
                     <p className="inline-flex items-center gap-1.5 font-medium">
                       <MapPin className="h-4 w-4 text-primary" />
-                      {nameField(row, ["label"])}
+                      {nameField(row, ["name"])}
                     </p>
                     {typeof row["address"] === "string" && (
                       <p className="text-muted-foreground">{row["address"]}</p>
@@ -310,7 +310,7 @@ function CaseWorkspace() {
                     {hasCoords && (
                       <div className="mt-3 overflow-hidden rounded-md border border-border/70">
                         <iframe
-                          title={`Map for ${nameField(row, ["label"])}`}
+                          title={`Map for ${nameField(row, ["name"])}`}
                           loading="lazy"
                           className="h-52 w-full"
                           src={`https://www.openstreetmap.org/export/embed.html?bbox=${Number(lng) - 0.01}%2C${Number(lat) - 0.01}%2C${Number(lng) + 0.01}%2C${Number(lat) + 0.01}&layer=mapnik&marker=${lat}%2C${lng}`}
