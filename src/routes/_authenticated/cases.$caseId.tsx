@@ -5,6 +5,7 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { CaseTimeline } from "@/components/case/CaseTimeline";
 import { EvidenceList } from "@/components/case/EvidenceList";
+import { EvidenceRelations } from "@/components/case/EvidenceRelations";
 import { EvidenceUploadDialog } from "@/components/case/EvidenceUploadDialog";
 import { RecordManager, useCaseRecords } from "@/components/case/RecordManager";
 import { WitnessStatements } from "@/components/case/WitnessStatements";
@@ -143,6 +144,7 @@ function CaseWorkspace() {
         <Tabs defaultValue="evidence" className="mt-6">
           <TabsList className="flex flex-wrap">
             <TabsTrigger value="evidence">Evidence</TabsTrigger>
+            <TabsTrigger value="relations">Relations</TabsTrigger>
             <TabsTrigger value="timeline">Timeline</TabsTrigger>
             <TabsTrigger value="people">People</TabsTrigger>
             <TabsTrigger value="vehicles">Vehicles</TabsTrigger>
@@ -169,6 +171,10 @@ function CaseWorkspace() {
               isAdmin={isAdmin}
               nameOf={nameOf}
             />
+          </TabsContent>
+
+          <TabsContent value="relations" className="mt-5">
+            <EvidenceRelations caseId={caseId} />
           </TabsContent>
 
           <TabsContent value="timeline" className="mt-5">
