@@ -154,11 +154,11 @@ function CaseWorkspace() {
               <div className="flex justify-end">
                 <EvidenceUploadDialog
                   caseId={caseId}
-                  locations={options(locations.data, ["label", "address"])}
-                  suspects={options(suspects.data, ["full_name"])}
-                  victims={options(victims.data, ["full_name"])}
-                  witnesses={options(witnesses.data, ["full_name"])}
-                  vehicles={options(vehicles.data, ["registration_number", "model"])}
+                  locations={options(locations.data, ["name", "address"])}
+                  suspects={options(suspects.data, ["name"])}
+                  victims={options(victims.data, ["name"])}
+                  witnesses={options(witnesses.data, ["name"])}
+                  vehicles={options(vehicles.data, ["registration_number", "make_model"])}
                 />
               </div>
             )}
