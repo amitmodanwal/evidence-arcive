@@ -7,6 +7,7 @@ import { CaseTimeline } from "@/components/case/CaseTimeline";
 import { EvidenceList } from "@/components/case/EvidenceList";
 import { EvidenceUploadDialog } from "@/components/case/EvidenceUploadDialog";
 import { RecordManager, useCaseRecords } from "@/components/case/RecordManager";
+import { WitnessStatements } from "@/components/case/WitnessStatements";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -95,11 +96,11 @@ function CaseWorkspace() {
   ) => {
     if (!id) return "—";
     const source = {
-      location: { rows: locations.data, keys: ["label", "address"] },
-      suspect: { rows: suspects.data, keys: ["full_name"] },
-      victim: { rows: victims.data, keys: ["full_name"] },
-      witness: { rows: witnesses.data, keys: ["full_name"] },
-      vehicle: { rows: vehicles.data, keys: ["registration_number", "model"] },
+      location: { rows: locations.data, keys: ["name", "address"] },
+      suspect: { rows: suspects.data, keys: ["name"] },
+      victim: { rows: victims.data, keys: ["name"] },
+      witness: { rows: witnesses.data, keys: ["name"] },
+      vehicle: { rows: vehicles.data, keys: ["registration_number", "make_model"] },
     }[kind];
     const row = (source.rows ?? []).find((r) => r.id === id);
     return row ? nameField(row as PersonRow, source.keys) : "—";
@@ -154,11 +155,11 @@ function CaseWorkspace() {
               <div className="flex justify-end">
                 <EvidenceUploadDialog
                   caseId={caseId}
-                  locations={options(locations.data, ["label", "address"])}
-                  suspects={options(suspects.data, ["full_name"])}
-                  victims={options(victims.data, ["full_name"])}
-                  witnesses={options(witnesses.data, ["full_name"])}
-                  vehicles={options(vehicles.data, ["registration_number", "model"])}
+                  locations={options(locations.data, ["name", "address"])}
+                  suspects={options(suspects.data, ["name"])}
+                  victims={options(victims.data, ["name"])}
+                  witnesses={options(witnesses.data, ["name"])}
+                  vehicles={options(vehicles.data, ["registration_number", "make_model"])}
                 />
               </div>
             )}
@@ -183,21 +184,17 @@ function CaseWorkspace() {
               canEdit={canEdit}
               isAdmin={isAdmin}
               fields={[
-                { name: "full_name", label: "Full name", required: true },
-                { name: "alias", label: "Alias" },
-                { name: "age", label: "Age", type: "number" },
-                { name: "gender", label: "Gender" },
+                { name: "name", label: "Name", required: true },
                 { name: "contact", label: "Contact" },
-                { name: "address", label: "Address", type: "textarea" },
+                { name: "reference_no", label: "Reference / ID number" },
                 { name: "notes", label: "Notes / role in case", type: "textarea" },
               ]}
               renderRow={(row) => (
                 <>
-                  <p className="font-medium">{nameField(row, ["full_name"])}</p>
+                  <p className="font-medium">{nameField(row, ["name"])}</p>
                   <p className="text-muted-foreground">
-                    {[row["alias"], row["age"], row["gender"], row["contact"]]
-                      .filter(Boolean)
-                      .join(" · ") || "No further identifiers"}
+                    {[row["contact"], row["reference_no"]].filter(Boolean).join(" · ") ||
+                      "No further identifiers"}
                   </p>
                   {typeof row["notes"] === "string" && <p className="mt-1">{row["notes"]}</p>}
                 </>
@@ -210,18 +207,16 @@ function CaseWorkspace() {
               canEdit={canEdit}
               isAdmin={isAdmin}
               fields={[
-                { name: "full_name", label: "Full name", required: true },
-                { name: "age", label: "Age", type: "number" },
-                { name: "gender", label: "Gender" },
+                { name: "name", label: "Name", required: true },
                 { name: "contact", label: "Contact" },
-                { name: "address", label: "Address", type: "textarea" },
+                { name: "reference_no", label: "Reference / ID number" },
                 { name: "notes", label: "Notes", type: "textarea" },
               ]}
               renderRow={(row) => (
                 <>
-                  <p className="font-medium">{nameField(row, ["full_name"])}</p>
+                  <p className="font-medium">{nameField(row, ["name"])}</p>
                   <p className="text-muted-foreground">
-                    {[row["age"], row["gender"], row["contact"]].filter(Boolean).join(" · ") ||
+                    {[row["contact"], row["reference_no"]].filter(Boolean).join(" · ") ||
                       "No further identifiers"}
                   </p>
                 </>
@@ -231,24 +226,25 @@ function CaseWorkspace() {
               table="witnesses"
               caseId={caseId}
               title="Witnesses"
-              hint="Statements and contact details are visible to authorised investigators only."
+              hint="Contact details are visible to authorised investigators only."
               canEdit={canEdit}
               isAdmin={isAdmin}
               fields={[
-                { name: "full_name", label: "Full name", required: true },
+                { name: "name", label: "Name", required: true },
                 { name: "contact", label: "Contact" },
-                { name: "address", label: "Address", type: "textarea" },
-                { name: "statement", label: "Statement", type: "textarea" },
+                { name: "reference_no", label: "Reference / ID number" },
+                { name: "notes", label: "Notes", type: "textarea" },
               ]}
               renderRow={(row) => (
                 <>
-                  <p className="font-medium">{nameField(row, ["full_name"])}</p>
-                  {typeof row["statement"] === "string" && (
-                    <p className="mt-1 text-muted-foreground">{row["statement"]}</p>
+                  <p className="font-medium">{nameField(row, ["name"])}</p>
+                  {typeof row["notes"] === "string" && (
+                    <p className="mt-1 text-muted-foreground">{row["notes"]}</p>
                   )}
                 </>
               )}
             />
+            <WitnessStatements caseId={caseId} canEdit={canEdit} isAdmin={isAdmin} />
           </TabsContent>
 
           <TabsContent value="vehicles" className="mt-5">
@@ -262,10 +258,9 @@ function CaseWorkspace() {
               fields={[
                 { name: "registration_number", label: "Registration number", required: true },
                 { name: "vehicle_type", label: "Vehicle type" },
-                { name: "make", label: "Make" },
-                { name: "model", label: "Model" },
+                { name: "make_model", label: "Make and model" },
                 { name: "color", label: "Colour" },
-                { name: "owner_name", label: "Registered owner" },
+                { name: "owner_reference", label: "Registered owner reference" },
                 { name: "notes", label: "Notes", type: "textarea" },
               ]}
               renderRow={(row) => (
@@ -275,7 +270,7 @@ function CaseWorkspace() {
                     {row["vehicle_type"] ? ` · ${String(row["vehicle_type"])}` : ""}
                   </p>
                   <p className="text-muted-foreground">
-                    {[row["make"], row["model"], row["color"], row["owner_name"]]
+                    {[row["make_model"], row["color"], row["owner_reference"]]
                       .filter(Boolean)
                       .join(" · ") || "No further details"}
                   </p>
@@ -293,10 +288,11 @@ function CaseWorkspace() {
               canEdit={canEdit}
               isAdmin={isAdmin}
               fields={[
-                { name: "label", label: "Label", required: true, placeholder: "Crime scene" },
+                { name: "name", label: "Name", required: true, placeholder: "Crime scene" },
                 { name: "address", label: "Address", type: "textarea" },
                 { name: "latitude", label: "Latitude", type: "number" },
                 { name: "longitude", label: "Longitude", type: "number" },
+                { name: "occurred_at", label: "Relevant date & time", type: "datetime" },
                 { name: "notes", label: "Notes", type: "textarea" },
               ]}
               renderRow={(row) => {
@@ -307,7 +303,7 @@ function CaseWorkspace() {
                   <>
                     <p className="inline-flex items-center gap-1.5 font-medium">
                       <MapPin className="h-4 w-4 text-primary" />
-                      {nameField(row, ["label"])}
+                      {nameField(row, ["name"])}
                     </p>
                     {typeof row["address"] === "string" && (
                       <p className="text-muted-foreground">{row["address"]}</p>
@@ -315,7 +311,7 @@ function CaseWorkspace() {
                     {hasCoords && (
                       <div className="mt-3 overflow-hidden rounded-md border border-border/70">
                         <iframe
-                          title={`Map for ${nameField(row, ["label"])}`}
+                          title={`Map for ${nameField(row, ["name"])}`}
                           loading="lazy"
                           className="h-52 w-full"
                           src={`https://www.openstreetmap.org/export/embed.html?bbox=${Number(lng) - 0.01}%2C${Number(lat) - 0.01}%2C${Number(lng) + 0.01}%2C${Number(lat) + 0.01}&layer=mapnik&marker=${lat}%2C${lng}`}
