@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,15 +13,15 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Investigator sign in — Sākṣya" },
+      { title: "Investigator sign in — साक्ष्य" },
       {
         name: "description",
-        content: "Restricted access. Sign in to the Sākṣya case evidence workspace.",
+        content: "Restricted access. Sign in to the साक्ष्य case evidence workspace.",
       },
-      { property: "og:title", content: "Investigator sign in — Sākṣya" },
+      { property: "og:title", content: "Investigator sign in — साक्ष्य" },
       {
         property: "og:description",
-        content: "Restricted access to the Sākṣya case evidence workspace.",
+        content: "Restricted access to the साक्ष्य case evidence workspace.",
       },
     ],
   }),
@@ -102,8 +102,7 @@ function AuthPage() {
     <main className="flex min-h-screen items-center justify-center px-4 py-12">
       <div className="panel w-full max-w-md p-8">
         <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground">
-          <ShieldCheck className="h-4 w-4 text-primary" />
-          <span className="font-display text-base font-semibold text-foreground">Sākṣya</span>
+          <BrandMark size="sm" className="text-foreground" />
         </Link>
         <h1 className="mt-6 text-2xl font-semibold">
           {mode === "signin" ? "Investigator sign in" : "Request investigator access"}

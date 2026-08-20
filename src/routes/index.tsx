@@ -1,18 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileLock2, Fingerprint, MapPin, ShieldCheck, Waves } from "lucide-react";
+import { FileLock2, Fingerprint, MapPin, Waves } from "lucide-react";
 
+import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sākṣya — Secure Case Evidence & Investigation Management" },
+      { title: "साक्ष्य — Secure Case Evidence & Investigation Management" },
       {
         name: "description",
         content:
-          "Sākṣya gives authorised investigators one secure workspace for evidence, statements, people, vehicles, locations and case timelines.",
+          "साक्ष्य gives authorised investigators one secure workspace for evidence, statements, people, vehicles, locations and case timelines.",
       },
-      { property: "og:title", content: "Sākṣya — Secure Case Evidence Management" },
+      { property: "og:title", content: "साक्ष्य — Secure Case Evidence Management" },
       {
         property: "og:description",
         content:
@@ -51,8 +52,7 @@ function Landing() {
     <main className="min-h-screen">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 text-primary" />
-          <span className="font-display text-lg font-semibold tracking-tight">Sākṣya</span>
+          <BrandMark />
         </div>
         <Button asChild size="sm">
           <Link to="/auth">Investigator sign in</Link>
@@ -65,7 +65,7 @@ function Landing() {
           Every piece of evidence, accounted for.
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-          Sākṣya is a restricted workspace for authorised investigators: upload and organise case
+          साक्ष्य is a restricted workspace for authorised investigators: upload and organise case
           evidence, connect it to people, vehicles and locations, and keep a permanent audit trail of
           every access.
         </p>
