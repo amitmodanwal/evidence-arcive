@@ -153,3 +153,11 @@
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
+
+/* Light tile so the emblem logo stays legible on the dark investigative theme. */
+@utility brand-tile {
+  background-color: var(--brand-tile);
+  border-radius: var(--radius-md);
+  padding: 2px;
+}
+
