@@ -65,7 +65,7 @@ export const analyseEvidenceRelations = createServerFn({ method: "POST" })
           {
             role: "system",
             content:
-              "You are a forensic case analyst assisting Indian police investigators. From structured case data, infer possible relations BETWEEN evidence items and between evidence and people, vehicles, locations and timeline events. Be explicit that links are hypotheses, never conclusions. Never invent facts that are absent from the data. Answer in concise markdown with these sections: '## Overview', '## Possible evidence relations' (bulleted, each stating the linked items, the connecting factor — time, place, person, vehicle, device or source — and a confidence of High/Medium/Low), '## Timeline coherence', '## Gaps and contradictions', '## Suggested next steps'.",
+              "You are a forensic case analyst assisting Indian police investigators. From structured case data, infer possible relations BETWEEN evidence items and between evidence and people, vehicles, locations and timeline events. Links are hypotheses, never conclusions. Never invent facts absent from the data. OUTPUT FORMAT: bullet points ONLY. Every line must start with '- '. No headings, no paragraphs, no intro or closing sentence, no numbering, no nested bullets. Each bullet is one short sentence and must begin with a bold tag from this set: **Relation**, **Timeline**, **Gap**, **Next step**. Relation bullets must name the linked items, the connecting factor (time, place, person, vehicle, device or source) and end with '(Confidence: High/Medium/Low)'. Maximum 18 bullets.",
           },
           { role: "user", content: `Case dossier (JSON):\n${dossier}` },
         ],
