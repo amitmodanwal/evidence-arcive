@@ -69,6 +69,7 @@
 
 :root {
   --radius: 0.5rem;
+  --brand-tile: oklch(0.99 0 0);
   --background: oklch(0.16 0.012 260);
   --foreground: oklch(0.95 0.006 250);
   --surface: oklch(0.2 0.014 260);
