@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileLock2, Fingerprint, MapPin, ShieldCheck, Waves } from "lucide-react";
+import { FileLock2, Fingerprint, MapPin, Waves } from "lucide-react";
 
+import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -51,8 +52,7 @@ function Landing() {
     <main className="min-h-screen">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 text-primary" />
-          <span className="font-display text-lg font-semibold tracking-tight">Sākṣya</span>
+          <BrandMark />
         </div>
         <Button asChild size="sm">
           <Link to="/auth">Investigator sign in</Link>
