@@ -13,15 +13,15 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Investigator sign in — Sākṣya" },
+      { title: "Investigator sign in — साक्ष्य" },
       {
         name: "description",
-        content: "Restricted access. Sign in to the Sākṣya case evidence workspace.",
+        content: "Restricted access. Sign in to the साक्ष्य case evidence workspace.",
       },
-      { property: "og:title", content: "Investigator sign in — Sākṣya" },
+      { property: "og:title", content: "Investigator sign in — साक्ष्य" },
       {
         property: "og:description",
-        content: "Restricted access to the Sākṣya case evidence workspace.",
+        content: "Restricted access to the साक्ष्य case evidence workspace.",
       },
     ],
   }),

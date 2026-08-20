@@ -7,13 +7,13 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sākṣya — Secure Case Evidence & Investigation Management" },
+      { title: "साक्ष्य — Secure Case Evidence & Investigation Management" },
       {
         name: "description",
         content:
-          "Sākṣya gives authorised investigators one secure workspace for evidence, statements, people, vehicles, locations and case timelines.",
+          "साक्ष्य gives authorised investigators one secure workspace for evidence, statements, people, vehicles, locations and case timelines.",
       },
-      { property: "og:title", content: "Sākṣya — Secure Case Evidence Management" },
+      { property: "og:title", content: "साक्ष्य — Secure Case Evidence Management" },
       {
         property: "og:description",
         content:
@@ -65,7 +65,7 @@ function Landing() {
           Every piece of evidence, accounted for.
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-          Sākṣya is a restricted workspace for authorised investigators: upload and organise case
+          साक्ष्य is a restricted workspace for authorised investigators: upload and organise case
           evidence, connect it to people, vehicles and locations, and keep a permanent audit trail of
           every access.
         </p>
